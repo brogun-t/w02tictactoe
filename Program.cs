@@ -7,13 +7,11 @@ namespace tictactoe
     {
         private static void Main(string[] args)
         {
-            //create starter list
+            //creates string to be used as starter board
             List<string> board = GetNewBoard();
             //set first player to be player "X"
             string currentPlayer = "X";
             //while loop to check for winner before proceeding
-
-
             while (!IsGameOver(board))
             {
                 drawBoard(board);
@@ -22,14 +20,18 @@ namespace tictactoe
                 editBoard(board, currentPlayer, numChoice);
                 if (!IsGameOver(board))
                 {
+                    //changes player if the game is not over
                     currentPlayer = changeTurn(currentPlayer);
                 }
             }
             drawBoard(board);
-
+    
+            //displays message to winner when game is over
             Console.WriteLine($"Game over. The winner is {currentPlayer}!");
         }
         
+        
+        //function to create a new board
         static List<string> GetNewBoard()
         {
             List<string> board = new List<string>();
@@ -49,12 +51,14 @@ namespace tictactoe
             Console.WriteLine("-+-+-");
             Console.WriteLine($"{list.ElementAt(6)}|{list.ElementAt(7)}|{list.ElementAt(8)}");
         }
+        //asks for user input to be used as the number choice in the grid
         static string userResponse(string letter)
             {
                 Console.WriteLine($"It is {letter}'s turn. Please choose a number between 1 and 9: ");
                 string choice = Console.ReadLine();
                 return choice;
             }
+        //edits the board to show updated selection
         static void editBoard(List<string> list, string letter, string number)
         {
             int num = int.Parse(number);
@@ -106,6 +110,8 @@ namespace tictactoe
 
                 return isGameOver;
         }
+        
+        //determines if there has been a tie
         static bool IsTie(List<string> board)
         {
             bool foundDigit = false;

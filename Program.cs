@@ -94,6 +94,7 @@ namespace tictactoe
                     )
                 {
                     isWinner = true;
+                    Console.WriteLine($"{player} is the winner!");
                 }
 
                 return isWinner;
